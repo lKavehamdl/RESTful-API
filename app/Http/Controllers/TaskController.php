@@ -7,13 +7,15 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskCollection;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Request;
 
 class TaskController extends Controller
 {
    
     public function index()
     {
-        return new TaskCollection(Task::all());
+        $filters = request()->query();
+        return new TaskCollection(Task::where("status", $filters["status"])->get());
     }
 
 
