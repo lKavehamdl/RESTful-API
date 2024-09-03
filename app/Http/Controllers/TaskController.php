@@ -15,7 +15,12 @@ class TaskController extends Controller
     public function index()
     {
         $filters = request()->query();
-        return new TaskCollection(Task::where("status", $filters["status"])->get());
+        if($filters == []){
+            return new TaskCollection(Task::orderBy("title", "DESC")->paginate(15));
+        }
+        else{
+            return new TaskCollection(Task::where("status", $filters["status"])->where("title", "Oh Well I Hate Nigg")->paginate(3));
+        }
     }
 
 
