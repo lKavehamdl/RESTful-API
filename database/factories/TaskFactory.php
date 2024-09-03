@@ -15,7 +15,8 @@ class TaskFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'status' => $this->faker->boolean()
+            'status' => $this->faker->boolean(),
+            'publisher_id' => User::factory()
         ];
     }
 }
